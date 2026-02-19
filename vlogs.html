@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZZLABS — Strategic Systems</title>
+
+<!-- SEO META -->
+<meta name="description" content="ZZ Labs is a strategic AI infrastructure laboratory founded by Benjamin González. We build scalable digital systems, automation engines and long-term technological leverage.">
+<meta name="keywords" content="ZZ Labs, ZZLABS, Benjamin González, AI Infrastructure, Automation Systems, Digital Architecture, Strategic Systems, Full Stack AI">
+<meta name="author" content="Benjamin González">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://labszz.site/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="ZZ Labs — Strategic AI Systems">
+<meta property="og:description" content="Strategic AI infrastructure, private automation engines and scalable digital systems.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://labszz.site/">
+<meta property="og:image" content="https://labszz.site/preview.jpg">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ZZ Labs — Strategic AI Systems">
+<meta name="twitter:description" content="AI Infrastructure • Automation • Digital Leverage">
+<meta name="twitter:image" content="https://labszz.site/preview.jpg">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ZZ Labs",
+  "url": "https://labszz.site",
+  "logo": "https://labszz.site/logonav01.png",
+  "founder": {
+    "@type": "Person",
+    "name": "Benjamin González"
+  },
+  "sameAs": [
+    "https://github.com/zzlabs-community",
+    "https://youtube.com/@benjazzlabs",
+    "https://instagram.com/benjgonzz"
+  ]
+}
+</script>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #070b17;
+    color: #e5e7eb;
+    overflow-x: hidden;
+    padding-top: 90px;
+}
+
+/* HEADER */
+.menu-item {
+    position: relative;
+    font-size: 14px;
+    color: #9ca3af;
+    transition: 0.3s ease;
+}
+.menu-item:hover { color: white; }
+.menu-item.active { color: white; }
+.menu-item.active::after {
+    content: "";
+    position: absolute;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+}
+
+/* Language */
+.lang-switch {
+    display: flex;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+}
+.lang-btn {
+    cursor: pointer;
+    color: #9ca3af;
+}
+.lang-btn.active-lang {
+    color: white;
+    font-weight: 600;
+}
+
+/* GitHub */
+.github-cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6d28d9, #7c3aed);
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+.github-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(124,58,237,0.5);
+}
+.github-badge {
+    background: black;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    /* Keep logo text visible on mobile */
+    .logo-text { 
+        display: inline-block; 
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .github-cta { padding: 7px 14px; font-size: 12px; }
+    .github-badge { padding: 4px 8px; font-size: 11px; }
+
+    /* Fix logo visibility on mobile */
+    #main-header > div {
+      gap: 12px;
+    }
+
+    #main-header .flex.items-center.space-x-3 {
+      flex-shrink: 0;
+    }
+
+    #main-header .flex.items-center.gap-6 {
+      gap: 12px;
+    }
+
+    .logo-text {
+      display: inline-block !important;
+      font-size: 14px;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+}
+
+/* Hero */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+.hero-bg::before,
+.hero-bg::after {
+    content: "";
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    filter: blur(150px);
+    opacity: 0.6;
+}
+.hero-bg::before {
+    background: radial-gradient(circle, #6366f1, transparent 60%);
+    top: -300px;
+    left: -300px;
+}
+.hero-bg::after {
+    background: radial-gradient(circle, #00ffd5, transparent 60%);
+    bottom: -300px;
+    right: -300px;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #6366f1, #00ffd5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+    border-radius: 18px;
+    transition: 0.3s ease;
+}
+.card:hover {
+    border-color: rgba(99,102,241,0.5);
+    transform: translateY(-6px);
+}
+
+/* ===== PROFILE CARD ===== */
+.profile-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 40px;
+  max-width: 420px;
+  margin: auto;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-12px) rotateY(6deg) rotateX(3deg);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+.profile-card img {
+  border-radius: 999px;
+  width: 130px;
+  height: 130px;
+  margin: auto;
+  display: block;
+  border: 3px solid rgba(99,102,241,0.6);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.profile-name {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 18px;
+}
+
+.profile-role {
+  font-size: 16px;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+.profile-desc {
+  margin-top: 18px;
+  line-height: 1.7;
+  color: #cbd5e1;
+}
+
+/* ===== SCROLL REVEAL ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.stagger > * {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stagger.active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger.active > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger.active > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger.active > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger.active > *:nth-child(4) { transition-delay: 0.4s; }
+
+/* ===== MOBILE NAV TRANSFORMATION ===== */
+@media (max-width: 768px) {
+
+  /* Header slightly more transparent */
+  #main-header {
+    background: rgba(7,11,23,0.45);
+    backdrop-filter: blur(12px);
+  }
+
+  #nav-container {
+    display: flex !important;
+    position: fixed;
+    top: 120px;
+    left: 12px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 0;
+    padding: 28px 14px;
+    border-radius: 32px;
+    background: rgba(255,255,255,0.035);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    z-index: 1000;
+  }
+
+  /* Remove horizontal styling and reset spacing */
+  #nav-container > div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 32px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  /* Remove Tailwind horizontal spacing */
+  #nav-container > div > a {
+    margin-left: 0 !important;
+  }
+
+  .menu-item {
+    position: relative;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 13px;
+    letter-spacing: 2px;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+  }
+
+  .menu-item.active::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -14px;
+  }
+
+  /* Prevent content overlap */
+  body {
+    padding-left: 95px;
+    padding-top: 100px;  /* extra breathing space */
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header id="main-header" class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-[#070b17]/80 border-b border-white/5 transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+
+    <div class="flex items-center space-x-3">
+      <img src="logonav01.png" class="w-12 md:w-14 lg:w-16 transition-all duration-300">
+      <span class="text-white font-semibold text-lg logo-text">ZZLABS</span>
+    </div>
+
+    <div id="nav-container" class="hidden md:flex">
+  <div class="flex items-center space-x-10 px-10 py-3 rounded-full bg-white/5 border border-white/10 transition-all duration-500">
+        <a href="index.html" class="menu-item">Acceso</a>
+        <a href="access.html" class="menu-item">Home</a>
+        <a href="vlogs.html" class="menu-item active">Community</a>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <div class="lang-switch">
+        <span class="lang-btn active-lang" onclick="setLang('es')">ES</span>
+        <span class="lang-btn" onclick="setLang('en')">EN</span>
+      </div>
+
+      <a href="https://kick.com/benjagzlz" class="github-cta">
+         Stream
+         <div class="github-badge">Kick</div>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- SHEET CONTENT -->
+<section id="sheet-content" class="min-h-screen py-32 px-6">
+
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <h1 class="text-4xl md:text-5xl font-bold text-gradient mb-6" data-i18n="updatesTitle">
+        ZZ Labs Updates
+      </h1>
+      <p class="text-gray-400 max-w-2xl mx-auto" data-i18n="updatesDesc">
+        Dynamic content powered by Google Sheets. 
+        Strategic logs, AI builds, system updates and development entries.
+      </p>
+    </div>
+
+
+    <!-- Filters -->
+    <div class="text-center mb-6 text-sm text-gray-400 reveal" data-i18n="filtersInfo">
+      Los filtros trabajan en conjunto. Puedes combinar categoría y tags para refinar los resultados estratégicamente.
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+
+      <select id="category-filter"
+        class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition">
+        <option value="">Todas las categorías</option>
+      </select>
+
+      <select id="tag-filter"
+        class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 transition">
+        <option value="">Todos los tags</option>
+      </select>
+
+    </div>
+
+    <!-- Dynamic Sheet Container -->
+    <div id="sheet-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Google Sheets content will be injected here -->
+    </div>
+
+  </div>
+
+</section>
+<footer class="border-t border-white/5 mt-24">
+
+  <div class="max-w-6xl mx-auto px-6 py-16 text-center space-y-8">
+
+    <!-- Social Icons -->
+    <div class="flex justify-center gap-8">
+
+      <!-- YouTube -->
+      <a href="https://youtube.com/@benjazzlabs" class="opacity-70 hover:opacity-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24">
+          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5v-7l6.2 3.5-6.2 3.5z"/>
+        </svg>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/benjgonzz" class="opacity-70 hover:opacity-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24">
+          <path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.6 4.9 4.9.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 3.3-1.6 4.8-4.9 4.9-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-3.3-.1-4.8-1.6-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-3.3 1.6-4.8 4.9-4.9C8.4 2.2 8.8 2.2 12 2.2zm0 2.2a7.6 7.6 0 1 0 0 15.2 7.6 7.6 0 0 0 0-15.2zm0 12.5a4.9 4.9 0 1 1 0-9.8 4.9 4.9 0 0 1 0 9.8zm6.4-12.8a1.8 1.8 0 1 1-3.6 0 1.8 1.8 0 0 1 3.6 0z"/>
+        </svg>
+      </a>
+
+      <!-- Facebook -->
+      <a href="#" class="opacity-70 hover:opacity-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24">
+          <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.3v-3h2.3V9.7c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4v1.7h2.6l-.4 3h-2.2v7A10 10 0 0 0 22 12z"/>
+        </svg>
+      </a>
+
+      <!-- X -->
+      <a href="#" class="opacity-70 hover:opacity-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24">
+          <path d="M18 2h3l-7.5 8.6L22 22h-6.8l-5.3-6.7L3 22H0l8.1-9.3L0 2h6.8l4.9 6.2L18 2z"/>
+        </svg>
+      </a>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-white/5 w-full"></div>
+
+    <!-- Legal -->
+    <div class="space-y-2 text-sm text-gray-500">
+      <p data-i18n="footerRights">© 2026 ZZ Labs. All rights reserved.</p>
+      <p data-i18n="footerTagline">Strategic Systems • AI Infrastructure • Digital Leverage</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+
+/* SCROLL REVEAL OBSERVER */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+    }
+  });
+}, { threshold: 0.18 });
+
+document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .stagger")
+  .forEach(el => revealObserver.observe(el));
+
+
+/* ===== GOOGLE SHEETS DYNAMIC LOADER ===== */
+
+/*
+INSTRUCTIONS:
+1. Replace SHEET_ID with your real Google Sheet ID.
+2. Make sure the sheet is published to the web.
+3. The sheet tab must be named: Sheet1
+*/
+
+const SHEET_URL = "https://opensheet.elk.sh/1TQoZ5ZyCw_IJ1T82wWZ_Ar5PNVCQd2NK70tMQRMCuAk/Hoja%201";
+
+let ALL_POSTS = [];
+let CURRENT_INDEX = 0;
+const POSTS_PER_LOAD = 9;
+
+fetch(SHEET_URL)
+  .then(res => res.json())
+  .then(data => {
+    if (!Array.isArray(data)) {
+      console.error("Invalid sheet response:", data);
+      throw new Error("Sheet response is not an array. Check sheet name or publication.");
+    }
+
+    const container = document.getElementById("sheet-container");
+
+    ALL_POSTS = data;
+
+    // --- CATEGORY + TAG FILTER LOGIC ---
+    const categorySelect = document.getElementById("category-filter");
+    const tagSelect = document.getElementById("tag-filter");
+
+    // Extract unique categories
+    const categories = [...new Set(
+      ALL_POSTS.map(p => p.category).filter(Boolean)
+    )];
+
+    categories.forEach(cat => {
+      categorySelect.innerHTML += `<option value="${cat}">${cat}</option>`;
+    });
+
+    // Extract unique tags (comma separated in Sheet)
+    const allTags = new Set();
+    ALL_POSTS.forEach(p => {
+      if (p.tags) {
+        p.tags.split(",").forEach(tag => {
+          allTags.add(tag.trim());
+        });
+      }
+    });
+
+    [...allTags].forEach(tag => {
+      tagSelect.innerHTML += `<option value="${tag}">${tag}</option>`;
+    });
+
+    function applyFilters() {
+      let filtered = ALL_POSTS;
+
+      if (categorySelect.value) {
+        filtered = filtered.filter(p => p.category === categorySelect.value);
+      }
+
+      if (tagSelect.value) {
+        filtered = filtered.filter(p =>
+          p.tags && p.tags.includes(tagSelect.value)
+        );
+      }
+
+      renderPosts(filtered, false);
+    }
+
+    categorySelect.addEventListener("change", applyFilters);
+    tagSelect.addEventListener("change", applyFilters);
+
+    // --- END CATEGORY + TAG FILTER LOGIC ---
+
+    function renderPosts(posts, append = false) {
+      if (!append) {
+        container.innerHTML = "";
+        CURRENT_INDEX = 0;
+      }
+
+      const filteredPosts = posts
+        .filter(post => post.title && post.title.trim() !== "")
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      const nextPosts = filteredPosts.slice(CURRENT_INDEX, CURRENT_INDEX + POSTS_PER_LOAD);
+
+      nextPosts.forEach(post => {
+
+        let youtubeURL = post.youtube || "";
+        if (youtubeURL.includes("watch?v=")) {
+          const videoId = youtubeURL.split("watch?v=")[1].split("&")[0];
+          youtubeURL = `https://www.youtube.com/embed/${videoId}`;
+        }
+        if (youtubeURL.includes("youtu.be/")) {
+          const videoId = youtubeURL.split("youtu.be/")[1].split("?")[0];
+          youtubeURL = `https://www.youtube.com/embed/${videoId}`;
+        }
+
+        let imageURL = post.image || "";
+        if (imageURL.includes("drive.google.com")) {
+          let fileId = "";
+          if (imageURL.includes("/file/d/")) {
+            fileId = imageURL.split("/file/d/")[1].split("/")[0];
+          }
+          if (!fileId && imageURL.includes("id=")) {
+            fileId = imageURL.split("id=")[1].split("&")[0];
+          }
+          if (fileId) {
+            imageURL = `https://drive.google.com/uc?export=view&id=${fileId}`;
+          }
+        }
+
+        container.innerHTML += `
+  <div class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 hover:border-indigo-500/40 transition-all duration-500 reveal">
+
+    <div class="aspect-video overflow-hidden">
+      ${youtubeURL && youtubeURL.trim() !== ""
+        ? `<iframe class="w-full h-full" src="${youtubeURL}" frameborder="0" allowfullscreen></iframe>`
+        : imageURL && imageURL.trim() !== ""
+        ? `<img src="${imageURL}" class="w-full h-full object-cover">`
+        : ""}
+    </div>
+
+    <div class="p-5 space-y-4">
+
+      ${post.category ? `
+        <div class="text-xs inline-block px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300">
+          ${post.category}
+        </div>
+      ` : ""}
+
+      <h3 class="text-lg font-semibold text-white">
+        ${post.title || "Untitled"}
+      </h3>
+
+      ${post.tags ? `
+        <div class="flex flex-wrap gap-2 text-xs">
+          ${post.tags.split(",").map(tag => `
+            <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-gray-300">
+              ${tag.trim()}
+            </span>
+          `).join("")}
+        </div>
+      ` : ""}
+
+      <div>
+        <p class="text-sm text-gray-400 line-clamp-3">
+          ${post.description || ""}
+        </p>
+
+        ${post.description && post.description.length > 120 ? `
+          <button 
+            onclick="this.previousElementSibling.classList.toggle('line-clamp-3'); this.innerText = this.innerText === 'Ver más' ? 'Ver menos' : 'Ver más';"
+            class="text-xs text-indigo-400 hover:text-white transition mt-2">
+            Ver más
+          </button>
+        ` : ""}
+      </div>
+
+      <span class="text-xs text-gray-500 block pt-1">
+        ${post.date || ""}
+      </span>
+
+      ${(() => {
+        const linkURL = post.enlace || post.Enlace || "";
+        if (!linkURL || linkURL.trim() === "") return "";
+        return `
+          <div class="flex justify-center mt-4">
+            <a href="${linkURL}"
+               target="_blank"
+               class="px-8 py-3 text-sm font-semibold rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 text-white shadow-xl shadow-indigo-500/40 hover:shadow-indigo-500/70 transition-all duration-300 transform hover:-translate-y-1">
+               ¡Vamos!
+            </a>
+          </div>
+        `;
+      })()}
+
+    </div>
+  </div>
+`;
+      });
+
+      CURRENT_INDEX += POSTS_PER_LOAD;
+
+      renderLoadMoreButton(filteredPosts.length);
+
+      // Re-activate reveal animation for newly added elements
+      document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .stagger")
+        .forEach(el => revealObserver.observe(el));
+    }
+
+    function renderLoadMoreButton(totalPosts) {
+      const existingBtn = document.getElementById("load-more-btn");
+      if (existingBtn) existingBtn.remove();
+
+      if (CURRENT_INDEX >= totalPosts) return;
+
+      const button = document.createElement("div");
+      button.className = "col-span-full text-center mt-8";
+
+      button.innerHTML = `
+        <button id="load-more-btn"
+          class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition font-medium">
+          Ver más
+        </button>
+      `;
+
+      container.appendChild(button);
+
+      document.getElementById("load-more-btn").addEventListener("click", () => {
+        renderPosts(ALL_POSTS, true);
+      });
+    }
+
+    renderPosts(ALL_POSTS);
+
+
+    // Re-trigger reveal animations for dynamic content
+    document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .stagger")
+      .forEach(el => revealObserver.observe(el));
+
+  })
+  .catch(error => {
+    document.getElementById("sheet-container").innerHTML = `
+      <div class="text-center text-red-500">
+        Error loading updates. Check Sheet ID and publication settings.
+      </div>
+    `;
+    console.error("Sheet Load Error:", error);
+  });
+
+/* TRANSLATIONS */
+const translations = {
+  es: {
+    updatesTitle: "Actualizaciones ZZ Labs",
+    updatesDesc: "Contenido dinámico impulsado por Google Sheets. Logs estratégicos, builds de IA, actualizaciones de sistemas y registros de desarrollo.",
+    filtersInfo: "Los filtros trabajan en conjunto. Puedes combinar categoría y tags para refinar los resultados estratégicamente.",
+    footerRights: "© 2026 ZZ Labs. Todos los derechos reservados.",
+    footerTagline: "Sistemas Estratégicos • Infraestructura IA • Apalancamiento Digital"
+  },
+  en: {
+    updatesTitle: "ZZ Labs Updates",
+    updatesDesc: "Dynamic content powered by Google Sheets. Strategic logs, AI builds, system updates and development entries.",
+    filtersInfo: "Filters work together. Combine category and tags to refine results strategically.",
+    footerRights: "© 2026 ZZ Labs. All rights reserved.",
+    footerTagline: "Strategic Systems • AI Infrastructure • Digital Leverage"
+  }
+};
+
+
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  localStorage.setItem("lang", lang);
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    el.innerText = translations[lang][key];
+  });
+
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.classList.remove("active-lang");
+    if (btn.textContent.toLowerCase() === lang) {
+      btn.classList.add("active-lang");
+    }
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("lang") || "es";
+  setLang(savedLang);
+});
+
+</script>
+
+</body>
+</html>

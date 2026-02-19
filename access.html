@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZZ Labs | Strategic AI Infrastructure & Automation Systems</title>
+
+<!-- SEO META -->
+<meta name="description" content="ZZ Labs builds strategic AI infrastructure, automation engines and scalable digital systems. Founded by Benjamin González, focused on long-term digital leverage and intelligent architecture.">
+<meta name="keywords" content="ZZ Labs, ZZLABS, Benjamin González, AI Infrastructure, Automation Systems, Digital Architecture, Strategic Systems, Full Stack AI">
+<meta name="author" content="Benjamin González">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://labszz.site/">
+<link rel="alternate" hreflang="es" href="https://labszz.site/">
+<link rel="alternate" hreflang="en" href="https://labszz.site/?lang=en">
+
+<!-- Open Graph -->
+<meta property="og:title" content="ZZ Labs — Strategic AI Systems">
+<meta property="og:description" content="Strategic AI infrastructure, private automation engines and scalable digital systems.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZZ Labs">
+<meta property="og:url" content="https://labszz.site/">
+<meta property="og:image" content="https://labszz.site/preview.jpg">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ZZ Labs — Strategic AI Systems">
+<meta name="twitter:description" content="AI Infrastructure • Automation • Digital Leverage">
+<meta name="twitter:image" content="https://labszz.site/preview.jpg">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ZZ Labs",
+  "url": "https://labszz.site",
+  "logo": "https://labszz.site/logonav01.png",
+  "founder": {
+    "@type": "Person",
+    "name": "Benjamin González"
+  },
+  "sameAs": [
+    "https://github.com/zzlabs-community",
+    "https://youtube.com/@benjazzlabs",
+    "https://instagram.com/benjgonzz"
+  ]
+}
+</script>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #070b17;
+    color: #e5e7eb;
+    overflow-x: hidden;
+    padding-top: 90px;
+}
+
+/* HEADER */
+.menu-item {
+    position: relative;
+    font-size: 14px;
+    color: #9ca3af;
+    transition: 0.3s ease;
+}
+.menu-item:hover { color: white; }
+.menu-item.active { color: white; }
+ .menu-item.active::after {
+     content: "";
+     position: absolute;
+     width: 6px;
+     height: 6px;
+     background: white;
+     border-radius: 50%;
+ }
+
+ /* Desktop dot (below text) */
+ @media (min-width: 769px) {
+   .menu-item.active::after {
+       bottom: -14px;
+       left: 50%;
+       transform: translateX(-50%);
+   }
+ }
+
+ /* Mobile lateral dot (centered beside vertical text) */
+ @media (max-width: 768px) {
+   .menu-item.active::after {
+       left: -10px;
+       top: 50%;
+       transform: translateY(-50%);
+   }
+ }
+
+/* Language */
+.lang-switch {
+    display: flex;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+}
+.lang-btn {
+    cursor: pointer;
+    color: #9ca3af;
+}
+.lang-btn.active-lang {
+    color: white;
+    font-weight: 600;
+}
+
+/* GitHub */
+.github-cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 25px rgba(124,58,237,0.4);
+}
+.github-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 35px rgba(124,58,237,0.7);
+}
+.github-badge {
+    background: black;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Hide mobile side nav on desktop */
+#nav-container {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    /* Show logo text on mobile */
+    .logo-text { display: inline-block; }
+
+    .github-cta { padding: 7px 14px; font-size: 12px; }
+    .github-badge { padding: 4px 8px; font-size: 11px; }
+
+    /* Hide desktop horizontal nav */
+    header .hidden.md\:flex {
+        display: none !important;
+    }
+
+    /* ===== MOBILE LATERAL NAV ===== */
+    #nav-container {
+        display: flex;
+        position: fixed;
+        top: 120px;
+        left: 14px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 22px 12px;
+        max-height: 78vh;
+        border-radius: 30px;
+        background: rgba(255,255,255,0.035);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        z-index: 999;
+    }
+
+    #nav-container > div {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #nav-container .menu-item {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        letter-spacing: 2px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    body {
+        padding-left: 100px;
+    }
+}
+
+/* Hero */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+.hero-bg::before,
+.hero-bg::after {
+    content: "";
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    filter: blur(150px);
+    opacity: 0.6;
+}
+.hero-bg::before {
+    background: radial-gradient(circle, #6366f1, transparent 60%);
+    top: -300px;
+    left: -300px;
+}
+.hero-bg::after {
+    background: radial-gradient(circle, #00ffd5, transparent 60%);
+    bottom: -300px;
+    right: -300px;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #6366f1, #00ffd5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+    border-radius: 18px;
+    transition: 0.3s ease;
+}
+.card:hover {
+    border-color: rgba(99,102,241,0.5);
+    transform: translateY(-6px);
+}
+
+/* ===== PROFILE CARD ===== */
+.profile-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 40px;
+  max-width: 420px;
+  margin: auto;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-12px) rotateY(6deg) rotateX(3deg);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+.profile-card img {
+  border-radius: 999px;
+  width: 130px;
+  height: 130px;
+  margin: auto;
+  display: block;
+  border: 3px solid rgba(99,102,241,0.6);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.profile-name {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 18px;
+}
+
+.profile-role {
+  font-size: 16px;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+.profile-desc {
+  margin-top: 18px;
+  line-height: 1.7;
+  color: #cbd5e1;
+}
+
+/* ===== SCROLL REVEAL ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.stagger > * {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stagger.active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger.active > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger.active > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger.active > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger.active > *:nth-child(4) { transition-delay: 0.4s; }
+
+/* ===== ZZLABS ROCKET LOGO SYSTEM ===== */
+.about-logo-wrapper {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  perspective: 1200px;
+}
+
+.about-logo {
+  width: 320px;
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+  transform: translateY(120px) scale(0.85);
+  animation:
+    rocketEntrance 1.6s cubic-bezier(.22,1,.36,1) forwards,
+    rocketIdle 4s ease-in-out 1.6s infinite;
+  filter: drop-shadow(0 0 45px rgba(139,92,246,0.8));
+}
+
+/* Entrance effect */
+@keyframes rocketEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(140px) scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rocketIdle {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+/* Hover = activate stronger thrusters but stay in place */
+.about-logo-wrapper:hover::after {
+  transform: scaleY(1.8);
+  opacity: 1;
+}
+
+.about-logo-wrapper:hover .violet-fire {
+  transform: scale(1.25);
+  opacity: 1;
+}
+
+.about-logo-wrapper::after {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.violet-fire {
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Violet fire core */
+.violet-fire {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+    rgba(168,85,247,0.9),
+    rgba(124,58,237,0.6),
+    rgba(79,70,229,0.25),
+    transparent 70%);
+  filter: blur(90px);
+  animation: plasmaPulse 4s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes plasmaPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.18); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* Space starfield behind rocket */
+.about-logo-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -200px;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 70% 80%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 85% 20%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.5), transparent);
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  animation: starfieldMove 12s linear infinite;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+@keyframes starfieldMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(200px); }
+}
+
+/* Rocket thrust flame (enhanced) */
+.about-logo-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -160px;
+  width: 180px;
+  height: 300px;
+  background: radial-gradient(circle at 50% 0%,
+    rgba(255,255,255,1),
+    rgba(168,85,247,0.9),
+    rgba(124,58,237,0.7),
+    rgba(99,102,241,0.4),
+    transparent 75%);
+  filter: blur(60px);
+  animation: rocketFlame 1s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes rocketFlame {
+  0% { transform: scaleY(1) scaleX(0.9); opacity: 0.85; }
+  100% { transform: scaleY(1.6) scaleX(1.1); opacity: 1; }
+}
+
+/* Exhaust particles */
+.about-logo-wrapper .violet-fire::after {
+  content: "";
+  position: absolute;
+  bottom: -200px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: rgba(200,180,255,0.9);
+  border-radius: 50%;
+  box-shadow:
+    -20px 40px 0 rgba(180,150,255,0.6),
+    20px 60px 0 rgba(150,120,255,0.5),
+    -30px 90px 0 rgba(200,180,255,0.4),
+    30px 120px 0 rgba(150,120,255,0.3);
+  animation: exhaustRise 1.6s linear infinite;
+}
+
+@keyframes exhaustRise {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(140px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-[#070b17]/80 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+
+    <div class="flex items-center space-x-3">
+      <img src="logonav01.png" class="w-12 md:w-14 lg:w-16 transition-all duration-300">
+      <span class="text-white font-semibold text-lg logo-text">ZZLABS</span>
+    </div>
+
+    <div class="hidden md:flex">
+      <div class="flex items-center space-x-10 px-10 py-3 rounded-full bg-white/5 border border-white/10">
+        <a href="#home" class="menu-item">Home</a>
+        <a href="#about" class="menu-item">About</a>
+        <a href="#systems" class="menu-item">Systems</a>
+        <a href="#founder" class="menu-item">Founder</a>
+        <a href="#contact" class="menu-item">Contact</a>
+        <a href="vlogs.html" class="menu-item text-indigo-400 font-semibold">Community</a>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <div class="lang-switch">
+        <span class="lang-btn active-lang" onclick="setLang('es')">ES</span>
+        <span class="lang-btn" onclick="setLang('en')">EN</span>
+      </div>
+
+      <a href="https://github.com/zzlabs-community" target="_blank" class="github-cta">
+         GITHUB
+         <div class="github-badge">Star</div>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE SIDE NAV -->
+<div id="nav-container">
+  <div>
+    <a href="#home" class="menu-item">Home</a>
+    <a href="#about" class="menu-item">About</a>
+    <a href="#systems" class="menu-item">Systems</a>
+    <a href="#founder" class="menu-item">Founder</a>
+    <a href="#contact" class="menu-item">Contact</a>
+    <a href="vlogs.html" class="menu-item text-indigo-400 font-semibold">Community</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="home" class="relative min-h-screen flex items-center justify-center text-center px-6 reveal">
+  <div class="hero-bg"></div>
+  <div class="relative z-10 max-w-5xl">
+    <h1 class="text-6xl md:text-7xl font-extrabold">
+      <span data-i18n="hero1">Construye</span>
+      <span class="text-gradient" data-i18n="hero2">Sistemas Estratégicos</span>
+    </h1>
+    <p class="mt-8 text-xl text-gray-400 max-w-2xl mx-auto" data-i18n="heroDesc">
+      Infraestructura de inteligencia artificial, automatización privada y arquitectura digital escalable.
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-32 px-6 border-t border-white/5 text-center reveal">
+  <div class="max-w-5xl mx-auto space-y-14">
+
+    <h2 class="text-4xl font-bold" data-i18n="aboutTitle">
+      Sobre ZZ Labs
+    </h2>
+
+    <!-- Animated Logo -->
+    <div class="flex justify-center">
+      <div class="about-logo-wrapper">
+        <img src="Logobody.png" class="about-logo" alt="ZZ Labs Logo">
+        <div class="violet-fire"></div>
+      </div>
+    </div>
+
+    <p class="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto" data-i18n="aboutText">
+      ZZ Labs es un laboratorio de sistemas digitales enfocado en diseñar infraestructura tecnológica,
+      automatizaciones inteligentes y activos escalables de largo plazo.
+    </p>
+
+  </div>
+</section>
+
+<!-- SYSTEMS -->
+<section id="systems" class="py-32 px-6 border-t border-white/5 text-center reveal">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-16" data-i18n="systemsTitle">Sistemas Principales</h2>
+
+    <div class="grid md:grid-cols-3 gap-8 stagger">
+      <div class="card p-8">
+        <h3 class="text-xl font-semibold mb-4">AI Infrastructure</h3>
+        <p class="text-gray-400 text-sm" data-i18n="sys1">
+          Desarrollo de pipelines de automatización y arquitectura basada en IA.
+        </p>
+      </div>
+
+      <div class="card p-8">
+        <h3 class="text-xl font-semibold mb-4">Automation Engines</h3>
+        <p class="text-gray-400 text-sm" data-i18n="sys2">
+          Sistemas privados de bots y ejecución automatizada.
+        </p>
+      </div>
+
+      <div class="card p-8">
+        <h3 class="text-xl font-semibold mb-4">Scalable Assets</h3>
+        <p class="text-gray-400 text-sm" data-i18n="sys3">
+          Infraestructura digital pensada para escalar globalmente.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder" class="py-24 md:py-32 px-6 md:px-12 border-t border-white/5 relative overflow-hidden reveal">
+
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 md:gap-20 items-center">
+
+    <!-- TEXT SIDE -->
+    <div class="space-y-8 text-center md:text-left reveal-left">
+
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
+          data-i18n="founderHeadline">
+        Building Strategic Leverage
+      </h2>
+
+      <p class="text-gray-400 text-base md:text-lg leading-relaxed"
+         data-i18n="founderParagraph1">
+        ZZ Labs is not content creation. It is infrastructure.
+        Systems that operate 24/7. AI workflows.
+        Private automation engines.
+        Long-term scalable digital assets.
+      </p>
+
+      <p class="text-gray-400 text-base md:text-lg leading-relaxed"
+         data-i18n="founderParagraph2">
+        My mission is to architect systems that multiply output without multiplying effort.
+        Digital leverage at scale.
+      </p>
+
+      <!-- BUTTONS -->
+      <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+
+        <a href="#contact"
+           class="w-full sm:w-auto px-8 py-3 rounded-xl font-semibold
+                  bg-gradient-to-r from-purple-600 to-indigo-600
+                  hover:from-purple-500 hover:to-indigo-500
+                  shadow-[0_0_25px_rgba(124,58,237,0.5)]
+                  hover:shadow-[0_0_40px_rgba(124,58,237,0.8)]
+                  transition-all duration-300 text-center"
+           data-i18n="founderBtn1">
+          Collaborate
+        </a>
+
+        <a href="https://github.com/zzlabs-community"
+           target="_blank"
+           class="w-full sm:w-auto px-8 py-3 rounded-xl font-semibold
+                  border border-white/20
+                  hover:bg-white/5
+                  transition-all duration-300 text-center"
+           data-i18n="founderBtn2">
+          View GitHub
+        </a>
+
+      </div>
+    </div>
+
+    <!-- PROFILE CARD SIDE -->
+    <div class="mt-12 md:mt-0 reveal-right">
+      <div class="profile-card">
+        <img src="founder.jpg" alt="Founder">
+        <div class="profile-name" data-i18n="founderName">
+          Benjamin González
+        </div>
+        <div class="profile-role" data-i18n="founderRole">
+          Founder • AI & Development Full Stack
+        </div>
+        <div class="profile-desc" data-i18n="founderBio">
+          Entrepreneur and digital systems architect focused on building scalable digital infrastructures.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-32 px-6 border-t border-white/5 text-center reveal">
+
+  <div class="max-w-6xl mx-auto">
+
+    <h2 class="text-4xl font-bold mb-12" data-i18n="contactTitle">
+      Contact
+    </h2>
+
+    <p class="text-gray-400 max-w-2xl mx-auto mb-16"
+       data-i18n="contactDesc">
+      Strategic collaborations, automation projects and AI infrastructure partnerships.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-8 stagger">
+
+      <div class="card p-10">
+        <h3 class="text-xl font-semibold mb-4" data-i18n="contactEmailTitle">
+          Email
+        </h3>
+        <p class="text-gray-400">contact@zzlabs.ai</p>
+      </div>
+
+      <div class="card p-10">
+        <h3 class="text-xl font-semibold mb-4">GitHub</h3>
+        <a href="https://github.com/zzlabs-community"
+           target="_blank"
+           class="text-indigo-400 hover:text-white transition">
+           zzlabs-community
+        </a>
+      </div>
+
+      <div class="card p-10">
+        <h3 class="text-xl font-semibold mb-4" data-i18n="contactSocialTitle">
+          Social
+        </h3>
+        <p class="text-gray-400">@benjgonzz</p>
+      </div>
+
+    </div>
+
+    <div class="mt-16 flex justify-center">
+      <a href="https://wa.me/542923560623"
+         target="_blank"
+         class="px-10 py-4 rounded-xl font-semibold
+                bg-gradient-to-r from-green-500 to-emerald-400
+                hover:opacity-90 transition-all duration-300
+                text-black"
+         data-i18n="contactBtn">
+         WhatsApp Business
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="border-t border-white/5 mt-24">
+
+  <div class="max-w-6xl mx-auto px-6 py-16 text-center space-y-8">
+
+    <!-- Social Icons -->
+    <div class="flex justify-center gap-8">
+
+      <!-- YouTube -->
+      <a href="https://youtube.com/@benjazzlabs" target="_blank" class="opacity-70 hover:opacity-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24">
+          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5v-7l6.2 3.5-6.2 3.5z"/>
+        </svg>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/benjgonzz" target="_blank" class="opacity-70 hover:opacity-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24">
+          <path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.6 4.9 4.9.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 3.3-1.6 4.8-4.9 4.9-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-3.3-.1-4.8-1.6-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-3.3 1.6-4.8 4.9-4.9C8.4 2.2 8.8 2.2 12 2.2zm0 2.2a7.6 7.6 0 1 0 0 15.2 7.6 7.6 0 0 0 0-15.2zm0 12.5a4.9 4.9 0 1 1 0-9.8 4.9 4.9 0 0 1 0 9.8zm6.4-12.8a1.8 1.8 0 1 1-3.6 0 1.8 1.8 0 0 1 3.6 0z"/>
+        </svg>
+      </a>
+
+      <!-- Facebook -->
+      <a href="#" target="_blank" class="opacity-70 hover:opacity-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24">
+          <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.3v-3h2.3V9.7c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4v1.7h2.6l-.4 3h-2.2v7A10 10 0 0 0 22 12z"/>
+        </svg>
+      </a>
+
+      <!-- X -->
+      <a href="#" target="_blank" class="opacity-70 hover:opacity-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24">
+          <path d="M18 2h3l-7.5 8.6L22 22h-6.8l-5.3-6.7L3 22H0l8.1-9.3L0 2h6.8l4.9 6.2L18 2z"/>
+        </svg>
+      </a>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-white/5 w-full"></div>
+
+    <!-- Legal -->
+    <div class="space-y-2 text-sm text-gray-500">
+      <p>© 2026 ZZ Labs. All rights reserved.</p>
+      <p>Strategic Systems • AI Infrastructure • Digital Leverage</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+
+/* SCROLL REVEAL OBSERVER */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+    }
+  });
+}, { threshold: 0.18 });
+
+document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .stagger")
+  .forEach(el => revealObserver.observe(el));
+
+
+/* ===== ACTIVE NAV SECTION TRACKING ===== */
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".menu-item");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 120;
+    const sectionHeight = section.offsetHeight;
+
+    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+
+    const href = link.getAttribute("href");
+
+    if (href && href.startsWith("#") && href.substring(1) === current) {
+      link.classList.add("active");
+    }
+  });
+});
+
+
+/* TRANSLATIONS */
+const translations = {
+  es: {
+    hero1: "Construye",
+    hero2: "Sistemas Estratégicos",
+    heroDesc: "Infraestructura de inteligencia artificial, automatización privada y arquitectura digital escalable.",
+    aboutTitle: "Sobre ZZ Labs",
+    aboutText: "ZZ Labs es un laboratorio de sistemas digitales enfocado en diseñar infraestructura tecnológica, automatizaciones inteligentes y activos escalables de largo plazo.",
+    systemsTitle: "Sistemas Principales",
+    sys1: "Desarrollo de pipelines de automatización y arquitectura basada en IA.",
+    sys2: "Sistemas privados de bots y ejecución automatizada.",
+    sys3: "Infraestructura digital pensada para escalar globalmente.",
+
+    founderName: "Benjamin González",
+    founderRole: "Fundador • IA & Desarrollador Full Stack",
+    founderBio: "Emprendedor y arquitecto de sistemas digitales enfocado en construir infraestructuras escalables, automatización avanzada y sistemas estratégicos de alto impacto.",
+    founderHeadline: "Construyendo Apalancamiento Estratégico",
+    founderParagraph1: "ZZ Labs no es creación de contenido. Es infraestructura. Sistemas que operan 24/7. Flujos de trabajo con IA. Motores privados de automatización. Activos digitales escalables a largo plazo.",
+    founderParagraph2: "Mi misión es diseñar sistemas que multipliquen resultados sin multiplicar esfuerzo. Apalancamiento digital a escala.",
+    founderBtn1: "Colaborar",
+    founderBtn2: "Ver GitHub",
+
+    contactTitle: "Contacto",
+    contactDesc: "Colaboraciones estratégicas, proyectos de automatización e infraestructura de inteligencia artificial.",
+    contactEmailTitle: "Correo",
+    contactSocialTitle: "Redes",
+    contactBtn: "WhatsApp Business"
+  },
+
+  en: {
+    hero1: "Build",
+    hero2: "Strategic Systems",
+    heroDesc: "AI infrastructure, private automation and scalable digital architecture.",
+    aboutTitle: "About ZZ Labs",
+    aboutText: "ZZ Labs is a digital systems laboratory focused on designing technological infrastructure and scalable automation assets.",
+    systemsTitle: "Core Systems",
+    sys1: "AI-powered automation pipelines and architecture.",
+    sys2: "Private bot systems and execution engines.",
+    sys3: "Global-ready scalable digital infrastructure.",
+
+    founderName: "Benjamin González",
+    founderRole: "Founder • AI & Development Full Stack",
+    founderBio: "Entrepreneur and digital systems architect focused on building scalable digital infrastructures, advanced automation and strategic high-impact systems.",
+    founderHeadline: "Building Strategic Leverage",
+    founderParagraph1: "ZZ Labs is not content creation. It is infrastructure. Systems that operate 24/7. AI workflows. Private automation engines. Long-term scalable digital assets.",
+    founderParagraph2: "My mission is to architect systems that multiply output without multiplying effort. Digital leverage at scale.",
+    founderBtn1: "Collaborate",
+    founderBtn2: "View GitHub",
+
+    contactTitle: "Contact",
+    contactDesc: "Strategic collaborations, automation projects and AI infrastructure partnerships.",
+    contactEmailTitle: "Email",
+    contactSocialTitle: "Social",
+    contactBtn: "WhatsApp Business"
+  }
+};
+
+
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  localStorage.setItem("lang", lang);
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    el.innerText = translations[lang][key];
+  });
+
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.classList.remove("active-lang");
+    if (btn.textContent.toLowerCase() === lang) {
+      btn.classList.add("active-lang");
+    }
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("lang") || "es";
+  setLang(savedLang);
+});
+
+</script>
+
+</body>
+</html>

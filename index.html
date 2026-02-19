@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZZ Labs | AI Infrastructure & Strategic Automation Systems</title>
+
+<meta name="description" content="ZZ Labs builds AI infrastructure, private automation engines and scalable digital systems. Founded by Benjamin González.">
+<meta name="keywords" content="ZZ Labs, ZZLABS, AI Infrastructure, Strategic Automation, Digital Systems, Benjamin González">
+<meta name="author" content="Benjamin González">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://labszz.site/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="ZZ Labs | AI Infrastructure & Strategic Automation Systems">
+<meta property="og:description" content="AI infrastructure, private automation engines and scalable digital systems.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://labszz.site/">
+<meta property="og:image" content="https://labszz.site/logonav01.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ZZ Labs">
+<meta name="twitter:description" content="AI Infrastructure & Strategic Automation Systems">
+<meta name="twitter:image" content="https://labszz.site/logonav01.png">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ZZ Labs",
+  "url": "https://labszz.site",
+  "logo": "https://labszz.site/logonav01.png",
+  "founder": {
+    "@type": "Person",
+    "name": "Benjamin González"
+  }
+}
+</script>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #070b17;
+    color: #e5e7eb;
+    overflow-x: hidden;
+}
+
+/* TRANSITION */
+.page-transition {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.page-transition.fade-out {
+    opacity: 0;
+    transform: scale(1.02);
+}
+
+/* BLOBS */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+.hero-bg::before,
+.hero-bg::after {
+    content: "";
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    filter: blur(150px);
+    opacity: 0.6;
+}
+.hero-bg::before {
+    background: radial-gradient(circle, #6366f1, transparent 60%);
+    top: -300px;
+    left: -300px;
+}
+.hero-bg::after {
+    background: radial-gradient(circle, #00ffd5, transparent 60%);
+    bottom: -300px;
+    right: -300px;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #6366f1, #00ffd5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6366f1, #00ffd5);
+    padding: 16px 36px;
+    border-radius: 14px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+.btn-disabled {
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 16px 36px;
+    border-radius: 14px;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+/* ===== SPACE ROCKET LOGO ===== */
+.about-logo-wrapper {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  perspective: 1200px;
+}
+
+.about-logo {
+  width: 240px;
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+  transform: translateY(100px) scale(0.85);
+  animation:
+    rocketEntrance 1.6s cubic-bezier(.22,1,.36,1) forwards,
+    rocketIdle 4s ease-in-out 1.6s infinite;
+  filter: drop-shadow(0 0 35px rgba(139,92,246,0.8));
+}
+
+@keyframes rocketEntrance {
+  0% { opacity: 0; transform: translateY(120px) scale(0.8); }
+  60% { opacity: 1; transform: translateY(-15px) scale(1.05); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes rocketIdle {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+/* Starfield */
+.about-logo-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -200px;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(2px 2px at 85% 20%, rgba(255,255,255,0.8), transparent);
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  animation: starfieldMove 14s linear infinite;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+@keyframes starfieldMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(200px); }
+}
+
+/* Plasma Core */
+.violet-fire {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+    rgba(168,85,247,0.8),
+    rgba(124,58,237,0.5),
+    rgba(79,70,229,0.2),
+    transparent 70%);
+  filter: blur(70px);
+  animation: plasmaPulse 4s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes plasmaPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* Rocket Flame */
+.about-logo-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -120px;
+  width: 140px;
+  height: 220px;
+  background: radial-gradient(circle at 50% 0%,
+    rgba(255,255,255,1),
+    rgba(168,85,247,0.8),
+    rgba(124,58,237,0.6),
+    transparent 75%);
+  filter: blur(45px);
+  animation: rocketFlame 1s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes rocketFlame {
+  0% { transform: scaleY(1); opacity: 0.85; }
+  100% { transform: scaleY(1.5); opacity: 1; }
+}
+</style>
+</head>
+
+<body class="page-transition">
+
+<section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+
+    <!-- Language Toggle -->
+    <div class="absolute top-6 right-6 z-20 flex gap-2">
+        <button id="langES" class="px-4 py-2 rounded-full border border-white/20 text-sm font-semibold hover:bg-white/10 transition">
+            ES
+        </button>
+        <button id="langEN" class="px-4 py-2 rounded-full border border-white/20 text-sm font-semibold hover:bg-white/10 transition">
+            EN
+        </button>
+    </div>
+
+    <div class="hero-bg"></div>
+
+    <!-- Space Rocket Logo (background positioned) -->
+    <div class="absolute top-24 left-1/2 -translate-x-1/2 opacity-80 pointer-events-none">
+        <div class="about-logo-wrapper">
+            <img src="Logobody.png" class="about-logo" alt="ZZ Labs Rocket Logo">
+            <div class="violet-fire"></div>
+        </div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mt-40">
+
+        <h1 id="mainTitle" class="text-6xl md:text-7xl font-extrabold">
+            Access <span class="text-gradient">ZZ Labs</span>
+        </h1>
+
+        <p id="mainSubtitle" class="mt-8 text-xl text-gray-400">
+            Join the official channel to unlock the platform.
+        </p>
+
+        <div class="mt-12 flex justify-center gap-6 flex-wrap">
+
+            <a href="https://www.youtube.com/@benjazzlabs?sub_confirmation=1"
+               target="_blank"
+               class="btn-primary text-black"
+               id="subscribeBtn">
+               <span id="subscribeText">Subscribe First</span>
+            </a>
+
+            <button id="unlockBtn" class="btn-disabled" disabled>
+               <span id="unlockText">Unlock Access</span>
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+<script>
+const langES = document.getElementById("langES");
+const langEN = document.getElementById("langEN");
+
+const translations = {
+    es: {
+        title: 'Accede a <span class="text-gradient">ZZ Labs</span>',
+        subtitle: "Únete al canal oficial para desbloquear la plataforma.",
+        subscribe: "Suscribirse primero",
+        unlock: "Desbloquear acceso",
+        enter: "Entrar a la Plataforma"
+    },
+    en: {
+        title: 'Access <span class="text-gradient">ZZ Labs</span>',
+        subtitle: "Join the official channel to unlock the platform.",
+        subscribe: "Subscribe First",
+        unlock: "Unlock Access",
+        enter: "Enter Platform"
+    }
+};
+
+function setLanguage(lang) {
+    document.getElementById("mainTitle").innerHTML = translations[lang].title;
+    document.getElementById("mainSubtitle").innerText = translations[lang].subtitle;
+    document.getElementById("subscribeText").innerText = translations[lang].subscribe;
+    document.getElementById("unlockText").innerText = translations[lang].unlock;
+}
+
+langES.addEventListener("click", () => setLanguage("es"));
+langEN.addEventListener("click", () => setLanguage("en"));
+
+const unlockBtn = document.getElementById("unlockBtn");
+const subscribeBtn = document.getElementById("subscribeBtn");
+const page = document.body;
+
+subscribeBtn.addEventListener("click", () => {
+    setTimeout(() => {
+        unlockBtn.disabled = false;
+        unlockBtn.classList.remove("btn-disabled");
+        unlockBtn.classList.add("btn-primary");
+        document.getElementById("unlockText").innerText = translations["en"].enter;
+
+        unlockBtn.onclick = () => {
+            page.classList.add("fade-out");
+            setTimeout(() => {
+                window.location.href = "access.html";
+            }, 600);
+        };
+
+    }, 1500);
+});
+</script>
+
+</body>
+</html>
