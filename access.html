@@ -55,6 +55,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -170,13 +179,14 @@ body {
         display: flex;
         position: fixed;
         top: 120px;
-        left: 14px;
+        left: 10px;
+        width: 58px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 22px 12px;
-        max-height: 78vh;
-        border-radius: 30px;
+        padding: 18px 8px;
+        max-height: 75vh;
+        border-radius: 26px;
         background: rgba(255,255,255,0.035);
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255,255,255,0.08);
@@ -196,15 +206,16 @@ body {
         writing-mode: vertical-rl;
         transform: rotate(180deg);
         font-size: 11px;
-        letter-spacing: 2px;
-        height: 70px;
+        letter-spacing: 1px;
+        height: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     body {
-        padding-left: 100px;
+        padding-left: 70px;
+        width: 100%;
     }
 }
 
@@ -347,12 +358,12 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 80px;
+  padding: 40px;
   perspective: 1200px;
 }
 
 .about-logo {
-  width: 320px;
+  width: 240px;
   position: relative;
   z-index: 5;
   opacity: 0;
@@ -547,8 +558,8 @@ body {
 <!-- HERO -->
 <section id="home" class="relative min-h-screen flex items-center justify-center text-center px-6 reveal">
   <div class="hero-bg"></div>
-  <div class="relative z-10 max-w-5xl">
-    <h1 class="text-6xl md:text-7xl font-extrabold">
+  <div class="relative z-10 max-w-5xl px-4">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight break-words">
       <span data-i18n="hero1">Construye</span>
       <span class="text-gradient" data-i18n="hero2">Sistemas Estratégicos</span>
     </h1>

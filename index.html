@@ -46,13 +46,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
     font-family: 'Inter', sans-serif;
     background: #070b17;
     color: #e5e7eb;
-    overflow-x: hidden;
 }
 
 /* TRANSITION */
@@ -237,16 +245,16 @@ body {
     <div class="hero-bg"></div>
 
     <!-- Space Rocket Logo (background positioned) -->
-    <div class="absolute top-24 left-1/2 -translate-x-1/2 opacity-80 pointer-events-none">
+    <div class="absolute top-16 md:top-24 left-1/2 -translate-x-1/2 opacity-70 pointer-events-none scale-90 md:scale-100">
         <div class="about-logo-wrapper">
             <img src="Logobody.png" class="about-logo" alt="ZZ Labs Rocket Logo">
             <div class="violet-fire"></div>
         </div>
     </div>
 
-    <div class="relative z-10 max-w-4xl mt-40">
+    <div class="relative z-10 max-w-4xl mt-28 md:mt-40 px-4">
 
-        <h1 id="mainTitle" class="text-6xl md:text-7xl font-extrabold">
+        <h1 id="mainTitle" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight break-words">
             Access <span class="text-gradient">ZZ Labs</span>
         </h1>
 
@@ -294,6 +302,7 @@ const translations = {
 };
 
 function setLanguage(lang) {
+    document.documentElement.lang = lang;
     document.getElementById("mainTitle").innerHTML = translations[lang].title;
     document.getElementById("mainSubtitle").innerText = translations[lang].subtitle;
     document.getElementById("subscribeText").innerText = translations[lang].subscribe;
@@ -312,7 +321,8 @@ subscribeBtn.addEventListener("click", () => {
         unlockBtn.disabled = false;
         unlockBtn.classList.remove("btn-disabled");
         unlockBtn.classList.add("btn-primary");
-        document.getElementById("unlockText").innerText = translations["en"].enter;
+        const currentLang = document.documentElement.lang || "en";
+        document.getElementById("unlockText").innerText = translations[currentLang].enter;
 
         unlockBtn.onclick = () => {
             page.classList.add("fade-out");
