@@ -11,13 +11,13 @@
 <meta name="keywords" content="ZZ Labs, ZZLABS, Benjamin González, AI Infrastructure, Automation Systems, Digital Architecture, Strategic Systems, Full Stack AI">
 <meta name="author" content="Benjamin González">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://labszz.site/">
+<link id="canonicalLink" rel="canonical" href="https://labszz.site/vlogs.html">
 
 <!-- Open Graph -->
 <meta property="og:title" id="og-title" content="ZZ Labs Community — AI Infrastructure Updates">
 <meta property="og:description" id="og-description" content="AI infrastructure logs, automation engines and strategic development updates.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://labszz.site/">
+<meta property="og:url" content="https://labszz.site/vlogs.html">
 <meta property="og:image" content="https://labszz.site/preview.jpg">
 
 <!-- Twitter Card -->
@@ -30,7 +30,36 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "ZZ Labs Community",
+  "url": "https://labszz.site/vlogs.html",
+  "description": "AI infrastructure logs, automation builds and strategic development updates.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ZZ Labs",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://labszz.site/logonav01.png"
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Benjamin González"
+  },
+  "sameAs": [
+    "https://github.com/zzlabs-community",
+    "https://youtube.com/@benjazzlabs",
+    "https://instagram.com/benjgonzz"
+  ]
+}
+</script>
+
+<!-- Organization Entity Schema -->
+<script type="application/ld+json" id="zzlabs-entity-schema">
+{
+  "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://labszz.site/#organization",
   "name": "ZZ Labs",
   "url": "https://labszz.site",
   "logo": "https://labszz.site/logonav01.png",
@@ -38,6 +67,14 @@
     "@type": "Person",
     "name": "Benjamin González"
   },
+  "areaServed": "Global",
+  "knowsAbout": [
+    "AI Infrastructure",
+    "Automation Systems",
+    "Digital Architecture",
+    "Full Stack AI",
+    "Strategic Systems Engineering"
+  ],
   "sameAs": [
     "https://github.com/zzlabs-community",
     "https://youtube.com/@benjazzlabs",
@@ -432,6 +469,9 @@ body {
         Dynamic content powered by Google Sheets. 
         Strategic logs, AI builds, system updates and development entries.
       </p>
+      <p class="sr-only">
+        ZZ Labs is an AI Infrastructure organization focused on automation systems, scalable digital architecture and strategic full stack AI development. This community log documents infrastructure builds, automation engines and AI system deployment strategies.
+      </p>
     </div>
 
 
@@ -554,6 +594,42 @@ fetch(SHEET_URL)
 
     ALL_POSTS = data;
 
+    // Helper to generate Article structured data dynamically
+    function generateArticleSchema(post) {
+      const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.title || "ZZ Labs Update",
+        "description": post.description || "AI infrastructure and automation update.",
+        "author": {
+          "@type": "Person",
+          "name": "Benjamin González"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "ZZ Labs",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://labszz.site/logonav01.png"
+          }
+        },
+        "datePublished": post.date || new Date().toISOString(),
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://labszz.site/vlogs.html"
+        }
+      };
+
+      if (post.image) {
+        articleSchema.image = post.image;
+      }
+
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.text = JSON.stringify(articleSchema);
+      document.head.appendChild(script);
+    }
+
     // --- CATEGORY + TAG FILTER LOGIC ---
     const categorySelect = document.getElementById("category-filter");
     const tagSelect = document.getElementById("tag-filter");
@@ -616,6 +692,12 @@ fetch(SHEET_URL)
 
       nextPosts.forEach(post => {
 
+        // Generate slug for individual URL
+        const slug = (post.title || "")
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-");
+
         let youtubeURL = post.youtube || "";
         if (youtubeURL.includes("watch?v=")) {
           const videoId = youtubeURL.split("watch?v=")[1].split("&")[0];
@@ -660,7 +742,9 @@ fetch(SHEET_URL)
       ` : ""}
 
       <h3 class="text-lg font-semibold text-white">
-        ${post.title || "Untitled"}
+        <a href="vlogs.html?post=${slug}" class="hover:text-indigo-400 transition">
+          ${post.title || "Untitled"}
+        </a>
       </h3>
 
       ${post.tags ? `
@@ -708,6 +792,7 @@ fetch(SHEET_URL)
     </div>
   </div>
 `;
+        // Removed generateArticleSchema(post); to avoid duplicate structured data on listing pages
       });
 
       CURRENT_INDEX += POSTS_PER_LOAD;
@@ -744,6 +829,111 @@ fetch(SHEET_URL)
 
     renderPosts(ALL_POSTS);
 
+
+    /* ===== SINGLE POST VIEW (URL PARAM MODE) ===== */
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const postSlug = urlParams.get("post");
+
+    if (postSlug) {
+      const singlePost = ALL_POSTS.find(p => {
+        const s = (p.title || "")
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-");
+        return s === postSlug;
+      });
+
+      if (singlePost) {
+
+        const container = document.getElementById("sheet-container");
+        container.innerHTML = "";
+
+        // Clear dynamic schemas
+        document.querySelectorAll(".dynamic-article-schema").forEach(el => el.remove());
+
+        // Build BlogPosting Schema (IMPROVED VERSION)
+        const schema = {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "@id": window.location.href + "#blogpost",
+          "headline": singlePost.title,
+          "description": singlePost.description,
+          "datePublished": singlePost.date,
+          "inLanguage": document.documentElement.lang,
+          "author": {
+            "@type": "Person",
+            "name": "Benjamin González"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "@id": "https://labszz.site/#organization"
+          },
+          "articleSection": singlePost.category || "AI Infrastructure",
+          "keywords": singlePost.tags || "",
+          "isPartOf": {
+            "@type": "Blog",
+            "name": "ZZ Labs Community",
+            "url": "https://labszz.site/vlogs.html"
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": window.location.href
+          }
+        };
+
+        const script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.classList.add("dynamic-article-schema");
+        script.textContent = JSON.stringify(schema);
+        document.head.appendChild(script);
+
+        // Add BreadcrumbList schema immediately after BlogPosting schema
+        const breadcrumbSchema = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://labszz.site/index.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Community",
+              "item": "https://labszz.site/vlogs.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": singlePost.title,
+              "item": window.location.href
+            }
+          ]
+        };
+        const breadcrumbScript = document.createElement("script");
+        breadcrumbScript.type = "application/ld+json";
+        breadcrumbScript.classList.add("dynamic-article-schema");
+        breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema);
+        document.head.appendChild(breadcrumbScript);
+
+        // Update canonical dynamically
+        const canonical = document.getElementById("canonicalLink");
+        canonical.setAttribute("href", window.location.href);
+
+        // Render single post
+        container.innerHTML = `
+          <div class="max-w-3xl mx-auto space-y-6">
+            <h2 class="text-3xl font-bold text-white">${singlePost.title}</h2>
+            <span class="text-sm text-gray-500">${singlePost.date || ""}</span>
+            ${singlePost.image ? `<img src="${singlePost.image}" class="rounded-xl w-full mt-6">` : ""}
+            <p class="text-gray-300 leading-relaxed mt-6">${singlePost.description || ""}</p>
+          </div>
+        `;
+      }
+    }
 
     // Re-trigger reveal animations for dynamic content
     document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .stagger")
@@ -783,7 +973,7 @@ const translations = {
 
 function setLang(lang) {
   document.documentElement.lang = lang;
-  localStorage.setItem("lang", lang);
+  localStorage.setItem("zzlabs_lang", lang);
 
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
@@ -815,7 +1005,7 @@ function setLang(lang) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const savedLang = localStorage.getItem("lang") || "es";
+  const savedLang = localStorage.getItem("zzlabs_lang") || "es";
   setLang(savedLang);
 });
 

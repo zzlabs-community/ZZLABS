@@ -10,7 +10,7 @@
 <meta name="keywords" content="ZZ Labs, ZZLABS, AI Infrastructure, Strategic Automation, Digital Systems, Benjamin González">
 <meta name="author" content="Benjamin González">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://labszz.site/">
+<link id="canonicalLink" rel="canonical" href="https://labszz.site/">
 
 <link rel="alternate" hreflang="es" href="https://labszz.site/?lang=es">
 <link rel="alternate" hreflang="en" href="https://labszz.site/?lang=en">
@@ -49,6 +49,19 @@
     "sameAs": [
       "https://github.com/zzlabs-community"
     ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ZZ Labs",
+  "url": "https://labszz.site",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://labszz.site/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
   }
 }
 </script>
@@ -472,14 +485,21 @@ const translations = {
 };
 
 function setLanguage(lang) {
+    localStorage.setItem("zzlabs_lang", lang);
+
     document.title = translations[lang].seoTitle;
     document.getElementById("metaDescription").setAttribute("content", translations[lang].seoDescription);
-    // Update OG and Twitter meta tags dynamically
     document.getElementById("ogTitle").setAttribute("content", translations[lang].ogTitle);
     document.getElementById("ogDescription").setAttribute("content", translations[lang].ogDescription);
     document.getElementById("twitterTitle").setAttribute("content", translations[lang].twitterTitle);
     document.getElementById("twitterDescription").setAttribute("content", translations[lang].twitterDescription);
+
     document.documentElement.lang = lang;
+
+    // Dynamic canonical
+    const canonical = document.getElementById("canonicalLink");
+    canonical.setAttribute("href", `https://labszz.site/?lang=${lang}`);
+
     document.getElementById("mainTitle").innerHTML = translations[lang].title;
     document.getElementById("mainSubtitle").innerText = translations[lang].subtitle;
     document.getElementById("subscribeText").innerText = translations[lang].subscribe;
@@ -489,12 +509,28 @@ function setLanguage(lang) {
     document.getElementById("infraText2").innerText = translations[lang].infraText2;
 }
 
-// Initialize language based on HTML lang attribute
-const initialLang = document.documentElement.lang || "es";
+// Initialize language from localStorage or URL param
+const urlParams = new URLSearchParams(window.location.search);
+const urlLang = urlParams.get("lang");
+const storedLang = localStorage.getItem("zzlabs_lang");
+const initialLang = urlLang || storedLang || "es";
+
 setLanguage(initialLang);
 
-langES.addEventListener("click", () => setLanguage("es"));
-langEN.addEventListener("click", () => setLanguage("en"));
+if (!urlLang) {
+  const newUrl = `?lang=${initialLang}`;
+  window.history.replaceState({}, "", newUrl);
+}
+
+langES.addEventListener("click", () => {
+  setLanguage("es");
+  window.history.replaceState({}, "", "?lang=es");
+});
+
+langEN.addEventListener("click", () => {
+  setLanguage("en");
+  window.history.replaceState({}, "", "?lang=en");
+});
 
 const unlockBtn = document.getElementById("unlockBtn");
 const subscribeBtn = document.getElementById("subscribeBtn");
