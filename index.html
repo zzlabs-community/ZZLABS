@@ -101,11 +101,79 @@ body {
     right: -300px;
 }
 
+/* ===== SPACE PARTICLES BACKGROUND ===== */
+.space-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(2px 2px at 30% 80%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 50% 40%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(2px 2px at 70% 10%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 90% 60%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 20% 70%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 80% 30%, rgba(255,255,255,0.7), transparent);
+  background-size: 150px 150px;
+  animation: spaceWarp 6s linear infinite;
+  opacity: 1;
+}
+
+
+@keyframes spaceWarp {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 1200px;
+  }
+}
+
+
 .text-gradient {
     background: linear-gradient(135deg, #6366f1, #00ffd5);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.shimmer-text {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(120deg, #6366f1 0%, #00ffd5 40%, #ffffff 50%, #00ffd5 60%, #6366f1 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerMove 3s linear infinite;
+}
+
+@keyframes shimmerMove {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center,
+    rgba(7,11,23,0.2),
+    rgba(7,11,23,0.6) 40%,
+    rgba(7,11,23,0.85) 70%);
+  z-index: 1;
+}
+
+.hero-title {
+  text-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+.hero-subtitle {
+  text-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 .btn-primary {
@@ -140,18 +208,72 @@ body {
   width: 240px;
   position: relative;
   z-index: 5;
-  opacity: 0;
-  transform: translateY(100px) scale(0.85);
   animation:
-    rocketEntrance 1.6s cubic-bezier(.22,1,.36,1) forwards,
-    rocketIdle 4s ease-in-out 1.6s infinite;
-  filter: drop-shadow(0 0 35px rgba(139,92,246,0.8));
+    rocketLaunch 4.5s cubic-bezier(.55,.06,.68,.19) forwards,
+    rocketShake 0.4s ease-out 4.5s 1,
+    rocketIdle 6s ease-in-out 4.9s infinite;
+  filter: drop-shadow(0 0 40px rgba(139,92,246,0.9));
+  animation-fill-mode: forwards;
 }
 
-@keyframes rocketEntrance {
-  0% { opacity: 0; transform: translateY(120px) scale(0.8); }
-  60% { opacity: 1; transform: translateY(-15px) scale(1.05); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes rocketLaunch {
+  0% {
+    opacity: 1;
+    transform: translateY(800px) scale(0.6);
+    filter: blur(6px);
+  }
+  40% {
+    transform: translateY(350px) scale(0.8);
+    filter: blur(3px);
+  }
+  70% {
+    transform: translateY(80px) scale(1.03);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes rocketShake {
+  0% { transform: translateX(-3px); }
+  25% { transform: translateX(3px); }
+  50% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+
+/* Particle Trail */
+.about-logo-wrapper .space-trail {
+  position: absolute;
+  bottom: -200px;
+  width: 6px;
+  height: 200px;
+  background: linear-gradient(to top,
+    rgba(168,85,247,0.9),
+    rgba(99,102,241,0.6),
+    transparent);
+  filter: blur(6px);
+  animation: trailLoop 2s linear infinite;
+  opacity: 0.9;
+  z-index: 0;
+}
+
+@keyframes trailLoop {
+  0% {
+    opacity: 0.7;
+    transform: scaleY(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.2);
+  }
+  100% {
+    opacity: 0.7;
+    transform: scaleY(0.8);
+  }
 }
 
 @keyframes rocketIdle {
@@ -230,7 +352,7 @@ body {
 
 <body class="page-transition">
 
-<section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+<section class="relative min-h-[100svh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
 
     <!-- Language Toggle -->
     <div class="absolute top-6 right-6 z-20 flex gap-2">
@@ -243,10 +365,13 @@ body {
     </div>
 
     <div class="hero-bg"></div>
+    <div class="space-particles"></div>
+    <div class="hero-overlay"></div>
 
     <!-- Space Rocket Logo (background positioned) -->
     <div class="absolute top-16 md:top-24 left-1/2 -translate-x-1/2 opacity-70 pointer-events-none scale-90 md:scale-100">
         <div class="about-logo-wrapper">
+            <div class="space-trail"></div>
             <img src="Logobody.png" class="about-logo" alt="ZZ Labs Rocket Logo">
             <div class="violet-fire"></div>
         </div>
@@ -254,11 +379,11 @@ body {
 
     <div class="relative z-10 max-w-4xl mt-28 md:mt-40 px-4">
 
-        <h1 id="mainTitle" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight break-words">
-            Access <span class="text-gradient">ZZ Labs</span>
+        <h1 id="mainTitle" class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight break-words">
+            Access <span class="shimmer-text">ZZLABS</span>
         </h1>
 
-        <p id="mainSubtitle" class="mt-8 text-xl text-gray-400">
+        <p id="mainSubtitle" class="hero-subtitle mt-8 text-xl text-gray-300">
             Join the official channel to unlock the platform.
         </p>
 
