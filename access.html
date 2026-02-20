@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ZZ Labs | Strategic AI Infrastructure & Automation Systems</title>
+<title id="dynamic-title">ZZ Labs | Strategic AI Infrastructure & Automation Systems</title>
 
 <!-- SEO META -->
-<meta name="description" content="ZZ Labs builds strategic AI infrastructure, automation engines and scalable digital systems. Founded by Benjamin González, focused on long-term digital leverage and intelligent architecture.">
+<meta name="description" id="meta-description" content="ZZ Labs builds strategic AI infrastructure, automation engines and scalable digital systems. Founded by Benjamin González, focused on long-term digital leverage and intelligent architecture.">
 <meta name="keywords" content="ZZ Labs, ZZLABS, Benjamin González, AI Infrastructure, Automation Systems, Digital Architecture, Strategic Systems, Full Stack AI">
 <meta name="author" content="Benjamin González">
 <meta name="robots" content="index, follow">
@@ -16,8 +16,8 @@
 <link rel="alternate" hreflang="en" href="https://labszz.site/?lang=en">
 
 <!-- Open Graph -->
-<meta property="og:title" content="ZZ Labs — Strategic AI Systems">
-<meta property="og:description" content="Strategic AI infrastructure, private automation engines and scalable digital systems.">
+<meta property="og:title" id="og-title" content="ZZ Labs — Strategic AI Systems">
+<meta property="og:description" id="og-description" content="Strategic AI infrastructure, private automation engines and scalable digital systems.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ZZ Labs">
 <meta property="og:url" content="https://labszz.site/">
@@ -25,8 +25,8 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ZZ Labs — Strategic AI Systems">
-<meta name="twitter:description" content="AI Infrastructure • Automation • Digital Leverage">
+<meta name="twitter:title" id="twitter-title" content="ZZ Labs — Strategic AI Systems">
+<meta name="twitter:description" id="twitter-description" content="AI Infrastructure • Automation • Digital Leverage">
 <meta name="twitter:image" content="https://labszz.site/preview.jpg">
 
 <!-- Structured Data -->
@@ -872,7 +872,9 @@ const translations = {
     contactDesc: "Colaboraciones estratégicas, proyectos de automatización e infraestructura de inteligencia artificial.",
     contactEmailTitle: "Correo",
     contactSocialTitle: "Redes",
-    contactBtn: "WhatsApp Business"
+    contactBtn: "WhatsApp Business",
+    seoTitle: "ZZ Labs | Infraestructura Estratégica de IA y Sistemas de Automatización",
+    seoDescription: "ZZ Labs diseña infraestructura estratégica de inteligencia artificial, motores privados de automatización y sistemas digitales escalables liderados por Benjamin González."
   },
 
   en: {
@@ -899,7 +901,9 @@ const translations = {
     contactDesc: "Strategic collaborations, automation projects and AI infrastructure partnerships.",
     contactEmailTitle: "Email",
     contactSocialTitle: "Social",
-    contactBtn: "WhatsApp Business"
+    contactBtn: "WhatsApp Business",
+    seoTitle: "ZZ Labs | Strategic AI Infrastructure & Automation Systems",
+    seoDescription: "ZZ Labs builds strategic AI infrastructure, private automation engines and scalable digital systems led by Benjamin González."
   }
 };
 
@@ -919,6 +923,23 @@ function setLang(lang) {
       btn.classList.add("active-lang");
     }
   });
+
+  // Dynamic SEO update
+  if (translations[lang].seoTitle) {
+    document.title = translations[lang].seoTitle;
+    document.getElementById("dynamic-title").innerText = translations[lang].seoTitle;
+  }
+
+  if (translations[lang].seoDescription) {
+    document.getElementById("meta-description").setAttribute("content", translations[lang].seoDescription);
+    document.getElementById("og-description").setAttribute("content", translations[lang].seoDescription);
+    document.getElementById("twitter-description").setAttribute("content", translations[lang].seoDescription);
+  }
+
+  if (translations[lang].seoTitle) {
+    document.getElementById("og-title").setAttribute("content", translations[lang].seoTitle);
+    document.getElementById("twitter-title").setAttribute("content", translations[lang].seoTitle);
+  }
 }
 
 window.addEventListener("DOMContentLoaded", () => {

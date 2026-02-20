@@ -4,26 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ZZLABS — Strategic Systems</title>
+<title id="dynamic-title">ZZ Labs | AI Infrastructure Community & Strategic Logs</title>
 
 <!-- SEO META -->
-<meta name="description" content="ZZ Labs is a strategic AI infrastructure laboratory founded by Benjamin González. We build scalable digital systems, automation engines and long-term technological leverage.">
+<meta name="description" id="meta-description" content="ZZ Labs Community — AI infrastructure logs, automation system builds and strategic development updates powered by Google Sheets.">
 <meta name="keywords" content="ZZ Labs, ZZLABS, Benjamin González, AI Infrastructure, Automation Systems, Digital Architecture, Strategic Systems, Full Stack AI">
 <meta name="author" content="Benjamin González">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://labszz.site/">
 
 <!-- Open Graph -->
-<meta property="og:title" content="ZZ Labs — Strategic AI Systems">
-<meta property="og:description" content="Strategic AI infrastructure, private automation engines and scalable digital systems.">
+<meta property="og:title" id="og-title" content="ZZ Labs Community — AI Infrastructure Updates">
+<meta property="og:description" id="og-description" content="AI infrastructure logs, automation engines and strategic development updates.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://labszz.site/">
 <meta property="og:image" content="https://labszz.site/preview.jpg">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ZZ Labs — Strategic AI Systems">
-<meta name="twitter:description" content="AI Infrastructure • Automation • Digital Leverage">
+<meta name="twitter:title" id="twitter-title" content="ZZ Labs Community — AI Infrastructure Updates">
+<meta name="twitter:description" id="twitter-description" content="AI infrastructure logs • Automation builds • Strategic development updates">
 <meta name="twitter:image" content="https://labszz.site/preview.jpg">
 
 <!-- Structured Data -->
@@ -766,17 +766,20 @@ const translations = {
     updatesDesc: "Contenido dinámico impulsado por Google Sheets. Logs estratégicos, builds de IA, actualizaciones de sistemas y registros de desarrollo.",
     filtersInfo: "Los filtros trabajan en conjunto. Puedes combinar categoría y tags para refinar los resultados estratégicamente.",
     footerRights: "© 2026 ZZ Labs. Todos los derechos reservados.",
-    footerTagline: "Sistemas Estratégicos • Infraestructura IA • Apalancamiento Digital"
+    footerTagline: "Sistemas Estratégicos • Infraestructura IA • Apalancamiento Digital",
+    seoTitle: "ZZ Labs | Comunidad de Infraestructura IA y Sistemas Estratégicos",
+    seoDescription: "Comunidad ZZ Labs — logs de infraestructura IA, builds de automatización y actualizaciones estratégicas impulsadas dinámicamente.",
   },
   en: {
     updatesTitle: "ZZ Labs Updates",
     updatesDesc: "Dynamic content powered by Google Sheets. Strategic logs, AI builds, system updates and development entries.",
     filtersInfo: "Filters work together. Combine category and tags to refine results strategically.",
     footerRights: "© 2026 ZZ Labs. All rights reserved.",
-    footerTagline: "Strategic Systems • AI Infrastructure • Digital Leverage"
+    footerTagline: "Strategic Systems • AI Infrastructure • Digital Leverage",
+    seoTitle: "ZZ Labs | AI Infrastructure Community & Strategic Logs",
+    seoDescription: "ZZ Labs Community — AI infrastructure logs, automation builds and strategic development updates.",
   }
 };
-
 
 function setLang(lang) {
   document.documentElement.lang = lang;
@@ -784,7 +787,9 @@ function setLang(lang) {
 
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
-    el.innerText = translations[lang][key];
+    if (translations[lang][key]) {
+      el.innerText = translations[lang][key];
+    }
   });
 
   document.querySelectorAll(".lang-btn").forEach(btn => {
@@ -793,6 +798,20 @@ function setLang(lang) {
       btn.classList.add("active-lang");
     }
   });
+
+  // Dynamic SEO update
+  if (translations[lang].seoTitle) {
+    document.title = translations[lang].seoTitle;
+    document.getElementById("dynamic-title").innerText = translations[lang].seoTitle;
+    document.getElementById("og-title").setAttribute("content", translations[lang].seoTitle);
+    document.getElementById("twitter-title").setAttribute("content", translations[lang].seoTitle);
+  }
+
+  if (translations[lang].seoDescription) {
+    document.getElementById("meta-description").setAttribute("content", translations[lang].seoDescription);
+    document.getElementById("og-description").setAttribute("content", translations[lang].seoDescription);
+    document.getElementById("twitter-description").setAttribute("content", translations[lang].seoDescription);
+  }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
