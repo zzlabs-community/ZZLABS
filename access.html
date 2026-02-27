@@ -160,6 +160,38 @@ body {
     display: none;
 }
 
+/* Mobile Community Floating Button - Bottom Right */
+.community-float-btn {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: white;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5);
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.community-float-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(124, 58, 237, 0.7);
+}
+
+@media (max-width: 768px) {
+    .community-float-btn {
+        display: flex;
+    }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
 
@@ -948,6 +980,13 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
+
+<!-- Mobile Community Floating Button -->
+<a href="vlogs.html" class="community-float-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+    </svg>
+</a>
 
 </body>
 </html>
