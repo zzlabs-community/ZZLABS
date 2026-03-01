@@ -74,7 +74,7 @@
 <style>
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overflow-x: hidden; }
+body { font-family: 'Inter', sans-serif; background: #070b17; color: #e5e7eb; overflow-x: hidden; }
 
 body::before {
   content: '';
@@ -88,6 +88,54 @@ body::before {
   z-index: -1;
 }
 
+/* HEADER - Same as access.html */
+.menu-item {
+  position: relative;
+  font-size: 14px;
+  color: #9ca3af;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+.menu-item:hover { color: white; }
+
+.lang-switch {
+  display: flex;
+  gap: 10px;
+  background: rgba(255,255,255,0.05);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.1);
+  font-size: 13px;
+}
+.lang-btn {
+  cursor: pointer;
+  color: #9ca3af;
+}
+.lang-btn.active-lang {
+  color: white;
+  font-weight: 600;
+}
+
+.github-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 25px rgba(124,58,237,0.4);
+  text-decoration: none;
+}
+.github-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 35px rgba(124,58,237,0.7);
+}
+
+/* Floating shapes */
 .floating-shape {
   position: fixed;
   border-radius: 50%;
@@ -104,33 +152,37 @@ body::before {
 @keyframes float2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-30px, -30px); } }
 @keyframes float3 { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.2); } }
 
-.navbar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(10, 10, 15, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  z-index: 1000;
+/* Main content */
+.main-content { 
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  padding: 8rem 2rem 4rem; 
+  text-align: center; 
 }
-.navbar-brand { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.25rem; color: #fff; text-decoration: none; }
-.navbar-logo { width: 36px; height: 36px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; }
-.navbar-links { display: flex; align-items: center; gap: 2rem; }
-.navbar-link { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-weight: 500; transition: color 0.3s; font-size: 0.9rem; }
-.navbar-link:hover { color: #fff; }
-.lang-switch { display: flex; gap: 0.5rem; }
-.lang-btn { padding: 0.4rem 0.8rem; border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: rgba(255, 255, 255, 0.6); border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all 0.3s; }
-.lang-btn:hover { border-color: rgba(255, 255, 255, 0.4); }
-.lang-btn.active-lang { background: rgba(99, 102, 241, 0.3); border-color: #6366f1; color: #fff; }
 
-.main-content { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 8rem 2rem 4rem; text-align: center; }
+/* Hero */
+.hero-title { 
+  font-size: clamp(2.5rem, 6vw, 4.5rem); 
+  font-weight: 800; 
+  line-height: 1.1; 
+  margin-bottom: 1.5rem; 
+  background: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #818cf8 100%); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+  background-clip: text; 
+}
+.hero-subtitle { 
+  font-size: clamp(1.1rem, 2vw, 1.5rem); 
+  color: #9ca3af; 
+  max-width: 600px; 
+  margin: 0 auto 3rem; 
+  font-weight: 400; 
+}
 
-.hero-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.hero-subtitle { font-size: clamp(1.1rem, 2vw, 1.5rem); color: rgba(255, 255, 255, 0.6); max-width: 600px; margin: 0 auto 3rem; font-weight: 400; }
-
+/* Email Form */
 .email-form-container {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -182,41 +234,53 @@ body::before {
 .success-message.show { display: block; }
 .success-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.5rem; }
 .success-text { color: #10b981; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
-.success-subtext { color: rgba(255, 255, 255, 0.6); margin-bottom: 1.5rem; }
+.success-subtext { color: #9ca3af; margin-bottom: 1.5rem; }
 
 @media (max-width: 768px) {
-  .navbar { padding: 1rem; }
-  .navbar-links { display: none; }
   .hero-title { font-size: 2.5rem; }
   .email-form-container { padding: 1.5rem; margin: 0 1rem; }
 }
-
-.fade-out { opacity: 0; transition: opacity 0.5s; }
 </style>
 
 </head>
 <body>
 
+<!-- Floating shapes -->
 <div class="floating-shape shape-1"></div>
 <div class="floating-shape shape-2"></div>
 <div class="floating-shape shape-3"></div>
 
-<nav class="navbar">
-  <a href="#" class="navbar-brand">
-    <div class="navbar-logo">ZZ</div>
-    <span>ZZ Labs</span>
-  </a>
-  <div class="navbar-links">
-    <a href="index.html" class="navbar-link">Home</a>
-    <a href="access.html" class="navbar-link">Systems</a>
-    <a href="https://github.com/zzlabs-community" target="_blank" class="navbar-link">GitHub</a>
-    <div class="lang-switch">
-      <button class="lang-btn" id="langES">ES</button>
-      <button class="lang-btn" id="langEN">EN</button>
+<!-- Header - Same as access.html -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-[#070b17]/80 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+    
+    <div class="flex items-center space-x-3">
+      <img src="logonav01.png" class="w-12 md:w-14 lg:w-16 transition-all duration-300">
+      <span class="text-white font-semibold text-lg">ZZLABS</span>
+    </div>
+
+    <div class="hidden md:flex">
+      <div class="flex items-center space-x-10 px-10 py-3 rounded-full bg-white/5 border border-white/10">
+        <a href="index.html" class="menu-item">Home</a>
+        <a href="access.html" class="menu-item">Systems</a>
+        <a href="https://github.com/zzlabs-community" target="_blank" class="menu-item">GitHub</a>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <div class="lang-switch">
+        <span class="lang-btn active-lang" id="langES">ES</span>
+        <span class="lang-btn" id="langEN">EN</span>
+      </div>
+
+      <a href="https://github.com/zzlabs-community" target="_blank" class="github-cta">
+         GITHUB
+      </a>
     </div>
   </div>
-</nav>
+</header>
 
+<!-- Main -->
 <main class="main-content">
   <h1 class="hero-title" id="mainTitle">Construye Sistemas Estratégicos</h1>
   <p class="hero-subtitle" id="mainSubtitle">Infraestructura IA, automatización privada y arquitectura digital escalable.</p>
@@ -299,6 +363,15 @@ function setLanguage(lang) {
   
   document.getElementById("ogTitle").setAttribute("content", translations[lang].title + " | ZZ Labs");
   document.getElementById("twitterTitle").setAttribute("content", translations[lang].title + " | ZZ Labs");
+  
+  // Update lang buttons
+  langES.classList.remove("active-lang");
+  langEN.classList.remove("active-lang");
+  if (lang === "es") {
+    langES.classList.add("active-lang");
+  } else {
+    langEN.classList.add("active-lang");
+  }
   
   const canonical = document.getElementById("canonicalLink");
   canonical.setAttribute("href", `https://labszz.site/?lang=${lang}`);
